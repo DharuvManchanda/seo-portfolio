@@ -59,7 +59,7 @@ const hero = () => {
         },{
           title: "Tailwind Master Kit",
           link: "https://tailwindmasterkit.com",
-          thumbnail: "/images/Hero/Hero12.jpg",
+          thumbnail: "/images/Hero/Hero12.jpeg",
         },{
           title: "Tailwind Master Kit",
           link: "https://tailwindmasterkit.com",
@@ -67,7 +67,7 @@ const hero = () => {
         },{
           title: "Tailwind Master Kit",
           link: "https://tailwindmasterkit.com",
-          thumbnail: "/images/Hero/Hero15.jpeg",
+          thumbnail: "/images/Hero/Hero15.jpg",
         },{
             title: "Tailwind Master Kit",
             link: "https://tailwindmasterkit.com",
