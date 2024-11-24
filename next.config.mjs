@@ -6,7 +6,8 @@ const nextConfig = {
        "assets.aceternity.com",
        "scontent.cdninstagram.com",
        "images.unsplash.com",
-      'scontent.cdninstagram.com',
+      "content.cdninstagram.com",
+      "scontent.cdninstagram.com",
     ],
     remotePatterns: [
       {

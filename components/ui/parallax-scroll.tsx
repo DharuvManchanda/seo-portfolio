@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 type Media = {
   id: string;
@@ -26,14 +27,15 @@ export const Card = React.memo(
         onMouseEnter={() => setHovered(index)}
         onMouseLeave={() => setHovered(null)}
         className={cn(
-          "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-70 md:h-96 w-full transition-all duration-300 ease-out",
+          "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
           hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
         )}
       >
         {card.media_type === "IMAGE" || card.media_type === "CAROUSEL_ALBUM" ? (
-          <img
+          <Image
             src={card.media_url}
             alt={card.caption || "Instagram Media"}
+            fill
             className="object-top md:object-cover absolute inset-0 w-full h-full"
           />
         ) : card.media_type === "VIDEO" ? (

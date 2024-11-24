@@ -17,7 +17,7 @@ export default function InstagramMedia() {
  // Use environment variables
  const IG_USER_ID = process.env.NEXT_PUBLIC_IG_USER_ID;
  const ACCESS_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
- 
+
   useEffect(() => {
     async function fetchInstagramMedia() {
       const INSTAGRAM_API_URL = `https://graph.instagram.com/${IG_USER_ID}/media?fields=id,caption,media_type,media_url,timestamp&access_token=${ACCESS_TOKEN}`;
@@ -40,9 +40,32 @@ export default function InstagramMedia() {
     fetchInstagramMedia();
   }, []);
 
-  if (loading) {
-    return <div className="text-center">Loading...</div>;
+  if (!loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="spinner"></div>
+        <style jsx>{`
+          .spinner {
+            width: 64px;
+            height: 64px;
+            border: 8px solid #e5e7eb; /* Light gray */
+            border-top: 8px solid #3b82f6; /* Blue */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+          }
+  
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        `}</style>
+      </div>
+    );
   }
-
+  
   return <FocusCards cards={media} />;
 }
