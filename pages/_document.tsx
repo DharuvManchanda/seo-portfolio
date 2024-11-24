@@ -3,7 +3,11 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+      <title>Anjali Bhutani</title>
+      <link rel="icon" href="/anjali.jpg" type="image/jpeg" />
+
+      </Head>
       <body>
         <Main />
         <NextScript />

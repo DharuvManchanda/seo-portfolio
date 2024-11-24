@@ -1,24 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    domains: [
+      "instagram.fdel11-2.fna.fbcdn.net",
+       "assets.aceternity.com",
+       "scontent.cdninstagram.com",
+       "images.unsplash.com",
+      'scontent.cdninstagram.com',
+    ],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        port: "",
-        pathname: "/**",
+        protocol: 'https',
+        hostname: 'api.microlink.io',
+        port: '',
+        pathname: '/**',
       },
-      {
-        protocol: "https",
-        hostname: "assets.aceternity.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
-    domains: [
-      "api.microlink.io", // Microlink Image Preview
-      "images.unsplash.com",
-      "aceternity.com",
     ],
   },
 };
