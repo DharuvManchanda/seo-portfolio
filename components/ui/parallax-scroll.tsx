@@ -27,7 +27,7 @@ export const Card = React.memo(
         onMouseEnter={() => setHovered(index)}
         onMouseLeave={() => setHovered(null)}
         className={cn(
-          "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out",
+          "rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-80 w-full transition-all duration-300 ease-out",
           hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
         )}
       >
@@ -36,15 +36,19 @@ export const Card = React.memo(
             src={card.media_url}
             alt={card.caption || "Instagram Media"}
             fill
-            className="object-top md:object-cover absolute inset-0 w-full h-full"
+            className="absolute inset-0 aspect-[3/2] object-cover"
+            // className="aspect-video absolute inset-0 w-full h-full object-cover"
+            // className="object-top md:object-cover absolute inset-0 w-full h-full"
           />
         ) : card.media_type === "VIDEO" ? (
           <video
             autoPlay
             muted
             loop
-            className="object-cover absolute inset-0 w-full h-full"
-          >
+            // className="object-cover absolute inset-0 w-full h-full"
+            // className="aspect-video absolute inset-0 w-full h-full object-cover"
+            className="aspect-[4/3] sm:aspect-video absolute inset-0 w-full h-full object-cover"
+            >
             <source src={card.media_url} type="video/mp4" />
           </video>
         ) : null}

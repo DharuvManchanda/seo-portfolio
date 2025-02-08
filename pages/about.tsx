@@ -1,6 +1,3 @@
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 import { LinkPreview } from "@/components/ui/link-preview";
 
 export default function Home() {
