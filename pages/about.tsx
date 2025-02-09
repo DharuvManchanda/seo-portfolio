@@ -28,7 +28,7 @@ export default function Home() {
           </LinkPreview>{" "}
           and{" "}
           <LinkPreview
-            url="https://www.instagram.com/hairandmakeupbyanjali/"
+            url="https://www.linkedin.com/in/anjali-bhutani-902049350/"
             isStatic={true}
             imageSrc="/images/Hero/Hero6.jpg"
             className="font-bold"
