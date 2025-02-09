@@ -48,28 +48,12 @@ export default function InstagramMedia() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="spinner"></div>
-        <style jsx>{`
-          .spinner {
-            width: 64px;
-            height: 64px;
-            border: 8px solid #e5e7eb; /* Light gray */
-            border-top: 8px solid #3b82f6; /* Blue */
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-          }
-  
-          @keyframes spin {
-            0% {
-              transform: rotate(0deg);
-            }
-            100% {
-              transform: rotate(360deg);
-            }
-          }
-        `}</style>
+      <div className="flex items-center justify-center min-h-screen bg-black">
+      <div className="animate-pulse flex flex-col items-center">
+        <div className="w-16 h-16 border-4 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+        <p className="mt-4 text-gray-300 text-sm">Loading Anjali's Makeup Gallery...</p>
       </div>
+    </div>
     );
   }
   
