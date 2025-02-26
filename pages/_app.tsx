@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react"
+import Topbar from "@/components/topbar";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -16,8 +17,8 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* Open Graph / Social Media Meta Tags */}
         <meta property="og:title" content="Best Makeup Artist - Anjali Bhutani" />
         <meta property="og:description" content="Looking for the best bridal or party makeup? Anjali Bhutani offers professional makeup services tailored to your beauty needs." />
-        <meta property="og:image" content="https://anjalibhutani.vercel.app/anjali.jpg" />
-        <meta property="og:url" content="https://anjalibhutani.vercel.app/" />
+        <meta property="og:image" content="https://hairandmakeupbyanjali.com/anjali.jpg" />
+        <meta property="og:url" content="https://hairandmakeupbyanjali.com/" />
         <meta property="og:type" content="website" />
 
         {/* JSON-LD Structured Data (SEO Optimization) */}
@@ -29,23 +30,24 @@ export default function App({ Component, pageProps }: AppProps) {
               "@type": "Person",
               "name": "Anjali Bhutani",
               "jobTitle": "Professional Makeup Artist",
-              "image": "https://anjalibhutani.vercel.app/anjali.jpg",
+              "image": "https://hairandmakeupbyanjali.com/anjali.jpg",
               "sameAs": [
                 "https://www.instagram.com/yourprofile",
                 "https://www.facebook.com/yourpage",
                 "https://www.linkedin.com/in/yourprofile"
               ],
               "description": "Professional makeup artist offering bridal, HD, and airbrush makeup services.",
-              "url": "https://anjalibhutani.vercel.app/"
+              "url": "https://hairandmakeupbyanjali.com/"
             })
           }}
         />
       </Head>
       <div className="max-h-full">
         <Navbar />
+        {/* <Topbar /> */}
         <main>
           <Component {...pageProps} />
-          <Analytics/>
+          <Analytics />
         </main>
       </div>
     </>
