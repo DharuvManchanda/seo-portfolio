@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 
@@ -43,29 +44,29 @@ const Navbar = () => {
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 md:space-x-8 md:flex-row md:mt-0">
             <li>
-              <a href="/" className="block py-2 px-3 md:p-0 text-white">
+              <Link href="/" className="block py-2 px-3 md:p-0 text-white">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/about" className="block py-2 px-3 md:p-0 text-white">
+              <Link href="/about" className="block py-2 px-3 md:p-0 text-white">
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/projects" className="block py-2 px-3 md:p-0 text-white">
+              <Link href="/projects" className="block py-2 px-3 md:p-0 text-white">
               Projects
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="https://www.instagram.com/hairandmakeupbyanjali/" target='_blank' className="block py-2 px-3 md:p-0 text-white">
+              <Link href="https://www.instagram.com/hairandmakeupbyanjali/" target='_blank' className="block py-2 px-3 md:p-0 text-white">
                 Instagram
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="www.linkedin.com/in/hairandmakeupbyanjali" target='_blank' className="block py-2 px-3 md:p-0 text-white">
+              <Link href="https://www.linkedin.com/in/hairandmakeupbyanjali/" target='_blank' className="block py-2 px-3 md:p-0 text-white">
                 LinkedIn
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
