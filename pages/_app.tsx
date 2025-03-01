@@ -42,6 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
             })
           }}
         />
+        <link rel="canonical" href="https://hairandmakeupbyanjali.com/" />
       </Head>
       <div className="max-h-full">
         <Navbar />
