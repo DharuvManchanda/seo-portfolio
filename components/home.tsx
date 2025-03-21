@@ -1,7 +1,7 @@
 "use client";
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import React from "react";
-import Topbar from "@/components/topbar";
+import { AnimatedTooltip } from "./ui/animated-tooltip";
+import Header from "./header";
 
 const people = [
   {
@@ -51,7 +51,7 @@ const people = [
 const home = () => {
   return (
     <>
-      <Topbar />
+      <Header />
       <section className="flex flex-col items-center justify-center w-full px-6 py-20">
         <div className="flex flex-row items-center justify-center mb-8 md:mb-12 w-full">
           <AnimatedTooltip items={people} />
