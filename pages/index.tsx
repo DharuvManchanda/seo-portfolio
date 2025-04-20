@@ -86,7 +86,7 @@ const hero = () => {
       <title>Bridal & Party Makeup | Anjali Bhutani - Best Makeup Artist</title>
       <meta name="description" content="Get professional makeup services by Anjali Bhutani. Bridal, HD, and Airbrush makeup available. Book now!" />
     </Head>
-    <HeroParallax products={products} />;
+    <HeroParallax products={products} />
   </>
 }
 

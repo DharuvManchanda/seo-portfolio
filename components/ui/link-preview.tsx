@@ -19,7 +19,6 @@ type LinkPreviewProps = {
   width?: number;
   height?: number;
   quality?: number;
-  layout?: string;
 } & (
   | { isStatic: true; imageSrc: string }
   | { isStatic?: false; imageSrc?: never }
@@ -31,8 +30,7 @@ export const LinkPreview = ({
   className,
   width = 200,
   height = 125,
-  quality = 50,
-  layout = "fixed",
+  quality = 75,
   isStatic = false,
   imageSrc = "",
 }: LinkPreviewProps) => {
@@ -55,8 +53,8 @@ export const LinkPreview = ({
   }
 
   const [isOpen, setOpen] = React.useState(false);
-
   const [isMounted, setIsMounted] = React.useState(false);
+  const [imgError, setImgError] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -64,31 +62,34 @@ export const LinkPreview = ({
 
   const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
-
   const translateX = useSpring(x, springConfig);
 
   const handleMouseMove = (event: any) => {
     const targetRect = event.target.getBoundingClientRect();
     const eventOffsetX = event.clientX - targetRect.left;
-    const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2; // Reduce the effect to make it subtle
+    const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2;
     x.set(offsetFromCenter);
+  };
+
+  const handleImageError = () => {
+    setImgError(true);
   };
 
   return (
     <>
-      {isMounted ? (
+      {isMounted && !imgError && (
         <div className="hidden">
           <Image
             src={src}
             width={width}
             height={height}
             quality={quality}
-            layout={layout}
-            priority={true}
+            priority
             alt="hidden image"
+            onError={handleImageError}
           />
         </div>
-      ) : null}
+      )}
 
       <HoverCardPrimitive.Root
         openDelay={50}
@@ -112,7 +113,7 @@ export const LinkPreview = ({
           sideOffset={10}
         >
           <AnimatePresence>
-            {isOpen && (
+            {isOpen && !imgError && (
               <motion.div
                 initial={{ opacity: 0, y: 20, scale: 0.6 }}
                 animate={{
@@ -141,10 +142,10 @@ export const LinkPreview = ({
                     width={width}
                     height={height}
                     quality={quality}
-                    layout={layout}
-                    priority={true}
+                    priority
                     className="rounded-lg"
                     alt="preview image"
+                    onError={handleImageError}
                   />
                 </Link>
               </motion.div>

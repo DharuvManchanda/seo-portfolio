@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FocusCards } from "@/components/ui/parallax-scroll";
 import { LinkPreview } from "@/components/ui/link-preview";
 
@@ -11,39 +11,58 @@ type Media = {
   timestamp: string;
 };
 
+// Cache implementation
+const cache = new Map<string, { data: Media[]; timestamp: number }>();
+const CACHE_DURATION = 1000 * 60 * 30; // 30 minutes
+
 export default function InstagramMedia() {
   const [media, setMedia] = useState<Media[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  // Use environment variables
-  const IG_USER_ID = process.env.NEXT_PUBLIC_IG_USER_ID;
   const ACCESS_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
 
-  useEffect(() => {
-    async function fetchInstagramMedia() {
-      const INSTAGRAM_API_URL = `https://graph.instagram.com/me/media?fields=id,media_type,media_url,caption&access_token=${ACCESS_TOKEN}`;
-      // const INSTAGRAM_API_URL = `https://graph.instagram.com/${IG_USER_ID}/media?fields=id,caption,media_type,media_url,timestamp&access_token=${ACCESS_TOKEN}`;
-      try {
-        const response = await fetch(INSTAGRAM_API_URL);
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(`Error ${response.status}: ${errorData.error.message}`);
-        }
-        const data = await response.json();
-        setMedia(data.data || []);
-      } catch (error) {
-        console.error("Error fetching Instagram media:", error);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
+  const fetchInstagramMedia = useCallback(async () => {
+    const cacheKey = 'instagram-media';
+    const cachedData = cache.get(cacheKey);
+    
+    if (cachedData && Date.now() - cachedData.timestamp < CACHE_DURATION) {
+      setMedia(cachedData.data);
+      setLoading(false);
+      return;
     }
 
-    fetchInstagramMedia();
-  }, []);
+    try {
+      const url = `https://graph.instagram.com/me/media?fields=id,media_type,media_url,caption,timestamp&access_token=${ACCESS_TOKEN}`;
+      
+      const response = await fetch(url);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Error ${response.status}: ${errorData.error.message}`);
+      }
+      
+      const data = await response.json();
+      
+      // Cache the new data
+      cache.set(cacheKey, {
+        data: data.data,
+        timestamp: Date.now()
+      });
 
-  if (loading) {
+      setMedia(data.data);
+    } catch (error) {
+      console.error("Error fetching Instagram media:", error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }, [ACCESS_TOKEN]);
+
+  useEffect(() => {
+    fetchInstagramMedia();
+  }, [fetchInstagramMedia]);
+
+  if (loading && media.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-black">
         <div className="animate-pulse flex flex-col items-center">
@@ -54,7 +73,7 @@ export default function InstagramMedia() {
     );
   }
 
-  if (error || media.length === 0) {
+  if (error && media.length === 0) {
     return (
       <div className="flex flex-col max-h-screen bg-black items-center justify-center">
         <div className="flex justify-center items-center h-[40rem] flex-col px-4">
@@ -66,8 +85,8 @@ export default function InstagramMedia() {
             <LinkPreview
               url="https://www.instagram.com/hairandmakeupbyanjali/"
               isStatic={true}
-              imageSrc="/images/Hero/Hero1.jpg"
-              className="font-bold"
+              imageSrc="/images/Hero/Hero1-min.jpg"
+              className="font-bold text-white"
             >
               Instagram
             </LinkPreview>{" "}
@@ -75,8 +94,8 @@ export default function InstagramMedia() {
             <LinkPreview
               url="https://www.linkedin.com/in/anjali-bhutani/"
               isStatic={true}
-              imageSrc="/images/Hero/Hero6.jpg"
-              className="font-bold"
+              imageSrc="/images/Hero/Hero6-min.jpg"
+              className="font-bold text-white"
             >
               LinkedIn
             </LinkPreview>?

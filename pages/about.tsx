@@ -9,7 +9,7 @@ export default function Home() {
             url="/projects"
             isStatic={true}
             imageSrc="/anjali.jpg"
-            className="font-bold"
+            className="font-bold text-white"
           >
             Anjali Bhutani{" "}
           </LinkPreview>{" "}
@@ -21,8 +21,8 @@ export default function Home() {
           <LinkPreview
             url="https://www.instagram.com/hairandmakeupbyanjali/"
             isStatic={true}
-            imageSrc="/images/Hero/Hero1.jpg"
-            className="font-bold"
+            imageSrc="/images/Hero/Hero1-min.jpg"
+            className="font-bold text-white"
           >
             Instagram{" "}
           </LinkPreview>{" "}
@@ -30,8 +30,8 @@ export default function Home() {
           <LinkPreview
             url="https://www.linkedin.com/in/anjali-bhutani-902049350/"
             isStatic={true}
-            imageSrc="/images/Hero/Hero6.jpg"
-            className="font-bold"
+            imageSrc="/images/Hero/Hero6-min.jpg"
+            className="font-bold text-white"
           >
             LinkedIn.{" "}
           </LinkPreview>{" "}

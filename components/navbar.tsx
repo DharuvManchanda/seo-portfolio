@@ -9,6 +9,8 @@ import {
   IconBrandLinkedin,
   IconHome,
   IconNewSection,
+  IconStar,
+  IconCalendarEvent,
 } from "@tabler/icons-react";
 import { FaPaintbrush } from "react-icons/fa6";
 import { GiLipstick } from "react-icons/gi";
@@ -32,11 +34,13 @@ const Navbar = () => {
           href: "/projects",
         },
         {
-          title: "LinkedIn",
+          title: "Book Session",
           icon: (
-            <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+            <IconCalendarEvent className="h-full w-full text-neutral-500 dark:text-neutral-300" />
           ),
-          href: "https://www.instagram.com/hairandmakeupbyanjali/",
+          href: "https://api.whatsapp.com/send?phone=919779473602&text=Hello%2C%20I%20want%20to%20book%20you%20for%20an%20event%20",
+          target: "_blank",
+          rel: "noopener noreferrer"
         },
         {
           title: "Instagram",
@@ -44,6 +48,8 @@ const Navbar = () => {
             <IconBrandInstagram className="h-full w-full text-neutral-500 dark:text-neutral-300" />
           ),
           href: "https://www.instagram.com/hairandmakeupbyanjali/",
+          target: "_blank",
+          rel: "noopener noreferrer"
         },
         {
           title: "About Me",
@@ -51,6 +57,15 @@ const Navbar = () => {
             <GiMirrorMirror className="h-full w-full text-neutral-500 dark:text-neutral-300" />
           ),
           href: "/about",
+        },
+        {
+          title: "Write Review",
+          icon: (
+            <IconStar className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+          ),
+          href: "https://g.page/r/CWmTa1X8pfQLEAE/review",
+          target: "_blank",
+          rel: "noopener noreferrer"
         },
       ];
   return (
